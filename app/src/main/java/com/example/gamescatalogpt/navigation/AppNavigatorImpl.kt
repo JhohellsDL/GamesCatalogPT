@@ -15,4 +15,12 @@ class AppNavigatorImpl : AppNavigator {
             popUpTo(AppRoute.Splash.route) { inclusive = true }
         }
     }
+
+    override fun navigateToDetail(
+        navController: NavController,
+        gameId: Int,
+        isFavorite: Boolean
+    ) {
+        navController.navigate(AppRoute.Detail.createRoute(gameId, isFavorite))
+    }
 }
