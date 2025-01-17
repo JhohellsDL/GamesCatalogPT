@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">GamesCatalogPT</string>
+    <string name="app_name">Catalog Game</string>
+    <string name="hi">Hola!</string>
+    <string name="subtitle_home">Que deseas jugar hoy?</string>
+    <string name="favorite_description">Favoritos</string>
+    <string name="image_game_description">Imagen del juego</string>
+    <string name="title_card_current">Juego del día</string>
+    <string name="time_label">%1$s min</string>
+    <string name="title_categories">Categorias</string>
 </resources>

@@ -17,13 +17,13 @@ class GameViewModel(
     val games: StateFlow<List<Game>> = _games.asStateFlow()
 
     init {
-        loadRecipes()
+        loadGames()
     }
 
-    fun loadRecipes() {
+    fun loadGames() {
         viewModelScope.launch {
-            val recipes = getGamesUseCase.invoke()
-            _games.value = recipes
+            val games = getGamesUseCase.invoke()
+            _games.value = games
         }
     }
 }

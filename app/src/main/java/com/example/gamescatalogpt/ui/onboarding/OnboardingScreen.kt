@@ -16,6 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.gamescatalogpt.domain.models.OnboardingPage
+import com.example.gamescatalogpt.domain.models.onboardingPages
 import com.example.gamescatalogpt.navigation.AppNavigator
 import com.example.gamescatalogpt.navigation.AppRoute
 import kotlinx.coroutines.launch
@@ -81,23 +83,6 @@ fun OnboardingPageContent(page: OnboardingPage) {
         )
     }
 }
-
-data class OnboardingPage(val title: String, val description: String)
-
-val onboardingPages = listOf(
-    OnboardingPage(
-        title = "Bienvenido al Recetario",
-        description = "Aquí encontrarás recetas deliciosas."
-    ),
-    OnboardingPage(
-        title = "Encuentra Recetas",
-        description = "Busca y filtra recetas fácilmente."
-    ),
-    OnboardingPage(
-        title = "Guarda tus favoritas",
-        description = "Accede rápido a tus recetas preferidas."
-    )
-)
 
 @Preview(showBackground = true)
 @Composable
