@@ -27,6 +27,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -232,8 +233,10 @@ fun HomeScreenContent(
     games: List<Game>,
     favorites: Set<Int>,
     randomGame: Game?,
+    searchQuery: String,
     onFavoriteClick: (Int) -> Unit,
     navigatorClick: (Int) -> Unit,
+    onSearchQueryGame: (String) -> Unit,
     onRandomClick: () -> Unit
 ) {
     Column {
@@ -241,6 +244,14 @@ fun HomeScreenContent(
         CardCurrentHome(
             game = randomGame ?: Game(),
             onRefresh = { onRandomClick() }
+        )
+        TextField(
+            value = searchQuery,
+            onValueChange = onSearchQueryGame,
+            placeholder = { Text("Buscar juegos...") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
         )
         LazyColumn {
             items(games.size) { index ->
@@ -398,7 +409,9 @@ fun HomeScreenPreview() {
             favorites = setOf(1, 3),
             onFavoriteClick = { },
             navigatorClick = { },
-            onRandomClick = { }
+            onRandomClick = { },
+            onSearchQueryGame = { },
+            searchQuery = ""
         )
     }
 }

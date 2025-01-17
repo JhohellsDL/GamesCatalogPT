@@ -16,14 +16,13 @@ fun HomeScreen(
     homeViewModel: HomeViewModel = koinViewModel(),
     navigator: AppNavigator = koinInject()
 ){
-    val games by homeViewModel.games.collectAsState()
+    val games by homeViewModel.filteredGames.collectAsState()
     val favorites by homeViewModel.favorites.collectAsState()
     val randomGame by homeViewModel.randomGame.observeAsState()
+    val searchQuery by homeViewModel.searchQuery.collectAsState()
 
-    LaunchedEffect(games) {
-        if (games.isNotEmpty()) {
-            homeViewModel.randomGame(games)
-        }
+    LaunchedEffect(Unit) {
+        homeViewModel.randomGame()
     }
 
     HomeScreenContent(
@@ -31,7 +30,9 @@ fun HomeScreen(
         favorites = favorites,
         onFavoriteClick = homeViewModel::toggleFavorite,
         navigatorClick = { navigator.navigateToDetail(navController, it, false) },
-        onRandomClick = { homeViewModel.randomGame(games) },
-        randomGame = randomGame
+        onRandomClick = { homeViewModel.randomGame() },
+        randomGame = randomGame,
+        searchQuery = searchQuery,
+        onSearchQueryGame = homeViewModel::updateSearchQuery,
     )
 }
