@@ -72,7 +72,7 @@ fun GameItem(
                     Image(
                         modifier = Modifier.fillMaxSize(),
                         painter = painter,
-                        contentDescription = "Imagen de la receta",
+                        contentDescription = "Imagen",
                         contentScale = ContentScale.Crop
                     )
                 }
@@ -143,30 +143,6 @@ fun GameItem(
     showBackground = true,
     uiMode = Configuration.UI_MODE_NIGHT_YES
 )
-@Composable
-fun GameItemPreviewDark() {
-    GamesCatalogPTTheme(darkTheme = true) {
-        GameItem(
-            game = Game(
-                id = 582,
-                title = "Tarisland",
-                thumbnail = "https://www.freetogame.com/g/582/thumbnail.jpg",
-                shortDescription = "A cross-platform MMORPG developed by Level Infinite and Published by Tencent.",
-                gameUrl = "https://www.freetogame.com/open/tarisland",
-                genre = "MMORPG",
-                platform = "PC (Windows)",
-                publisher = "Tencent",
-                developer = "Level Infinite",
-                releaseDate = "2024-06-22",
-                freeToGameProfileUrl = "https://www.freetogame.com/tarisland"
-            ),
-            isFavorite = true,
-            onFavoriteToggle = { },
-            onClickItem = { }
-        )
-    }
-}
-
 @Preview(
     name = "Light Mode",
     showBackground = true,
@@ -176,19 +152,7 @@ fun GameItemPreviewDark() {
 fun GameItemPreviewLight() {
     GamesCatalogPTTheme(darkTheme = false) {
         GameItem(
-            game =Game(
-                id = 582,
-                title = "Tarisland",
-                thumbnail = "https://www.freetogame.com/g/582/thumbnail.jpg",
-                shortDescription = "A cross-platform MMORPG developed by Level Infinite and Published by Tencent.",
-                gameUrl = "https://www.freetogame.com/open/tarisland",
-                genre = "MMORPG",
-                platform = "PC (Windows)",
-                publisher = "Tencent",
-                developer = "Level Infinite",
-                releaseDate = "2024-06-22",
-                freeToGameProfileUrl = "https://www.freetogame.com/tarisland"
-            ),
+            game = Game.gameMock,
             isFavorite = true,
             onFavoriteToggle = { },
             onClickItem = { }
