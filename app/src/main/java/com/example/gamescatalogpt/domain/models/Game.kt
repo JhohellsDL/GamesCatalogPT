@@ -15,4 +15,20 @@ data class Game(
     val releaseDate: String = EMPTY,
     val freeToGameProfileUrl: String = EMPTY,
     val isFavorite: Boolean = false
-)
+) {
+    companion object{
+        val gameMock = Game(
+            id = 582,
+            title = "Tarisland",
+            thumbnail = "https://www.freetogame.com/g/582/thumbnail.jpg",
+            shortDescription = "A cross-platform MMORPG developed by Level Infinite and Published by Tencent.",
+            gameUrl = "https://www.freetogame.com/open/tarisland",
+            genre = "MMORPG",
+            platform = "PC (Windows)",
+            publisher = "Tencent",
+            developer = "Level Infinite",
+            releaseDate = "2024-06-22",
+            freeToGameProfileUrl = "https://www.freetogame.com/tarisland"
+        )
+    }
+}
