@@ -84,7 +84,8 @@ private fun HomeHeader() {
 @Composable
 private fun CardCurrentHome(
     game: Game,
-    onRefresh: () -> Unit = { }
+    onRefresh: () -> Unit = { },
+    goDetail: (Int) -> Unit
 ) {
     val painter = if (game.thumbnail.isNotEmpty()) {
         rememberAsyncImagePainter(game.thumbnail)
@@ -97,7 +98,7 @@ private fun CardCurrentHome(
             modifier = Modifier
                 .padding(8.dp)
                 .fillMaxWidth()
-                .clickable { },
+                .clickable { goDetail(game.id) },
             shape = RoundedCornerShape(12.dp),
             elevation = CardDefaults.elevatedCardElevation(4.dp)
         ) {
@@ -117,7 +118,8 @@ private fun CardCurrentHome(
                     modifier = Modifier
                         .padding(4.dp)
                         .align(Alignment.TopEnd),
-                    onClick = onRefresh ) {
+                    onClick = onRefresh
+                ) {
                     Icon(
                         modifier = Modifier.size(20.dp),
                         imageVector = Icons.Default.Refresh,
@@ -243,7 +245,8 @@ fun HomeScreenContent(
         HomeHeader()
         CardCurrentHome(
             game = randomGame ?: Game(),
-            onRefresh = { onRandomClick() }
+            onRefresh = { onRandomClick() },
+            goDetail = { navigatorClick(randomGame?.id ?: 0) }
         )
         TextField(
             value = searchQuery,
@@ -307,35 +310,13 @@ fun HomeHeaderPreview() {
 fun CardCurrentHomePreview() {
     GamesCatalogPTTheme {
         CardCurrentHome(
-            game = Game(
-                id = 582,
-                title = "Tarisland",
-                thumbnail = "https://www.freetogame.com/g/582/thumbnail.jpg",
-                shortDescription = "A cross-platform MMORPG developed by Level Infinite and Published by Tencent.",
-                gameUrl = "https://www.freetogame.com/open/tarisland",
-                genre = "MMORPG",
-                platform = "PC (Windows)",
-                publisher = "Tencent",
-                developer = "Level Infinite",
-                releaseDate = "2024-06-22",
-                freeToGameProfileUrl = "https://www.freetogame.com/tarisland"
-            )
+            game = Game.gameMock,
+            onRefresh = { },
+            goDetail = { }
         )
     }
 }
 
-@Preview(
-    name = "Dark Mode",
-    showBackground = true,
-    backgroundColor = 0xFF1E2025,
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES
-)
-@Preview(
-    name = "Light Mode",
-    showBackground = true,
-    backgroundColor = 0xFFE6E9E8,
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_NO
-)
 @Preview(
     name = "Dark Mode",
     showBackground = true,
@@ -353,59 +334,11 @@ fun HomeScreenPreview() {
     GamesCatalogPTTheme {
         HomeScreenContent(
             games = listOf(
-                Game(
-                    id = 582,
-                    title = "Tarisland",
-                    thumbnail = "https://www.freetogame.com/g/582/thumbnail.jpg",
-                    shortDescription = "A cross-platform MMORPG developed by Level Infinite and Published by Tencent.",
-                    gameUrl = "https://www.freetogame.com/open/tarisland",
-                    genre = "MMORPG",
-                    platform = "PC (Windows)",
-                    publisher = "Tencent",
-                    developer = "Level Infinite",
-                    releaseDate = "2024-06-22",
-                    freeToGameProfileUrl = "https://www.freetogame.com/tarisland"
-                ),
-                Game(
-                    id = 582,
-                    title = "Tarisland",
-                    thumbnail = "https://www.freetogame.com/g/582/thumbnail.jpg",
-                    shortDescription = "A cross-platform MMORPG developed by Level Infinite and Published by Tencent.",
-                    gameUrl = "https://www.freetogame.com/open/tarisland",
-                    genre = "MMORPG",
-                    platform = "PC (Windows)",
-                    publisher = "Tencent",
-                    developer = "Level Infinite",
-                    releaseDate = "2024-06-22",
-                    freeToGameProfileUrl = "https://www.freetogame.com/tarisland"
-                ),
-                Game(
-                    id = 582,
-                    title = "Tarisland",
-                    thumbnail = "https://www.freetogame.com/g/582/thumbnail.jpg",
-                    shortDescription = "A cross-platform MMORPG developed by Level Infinite and Published by Tencent.",
-                    gameUrl = "https://www.freetogame.com/open/tarisland",
-                    genre = "MMORPG",
-                    platform = "PC (Windows)",
-                    publisher = "Tencent",
-                    developer = "Level Infinite",
-                    releaseDate = "2024-06-22",
-                    freeToGameProfileUrl = "https://www.freetogame.com/tarisland"
-                )
+                Game.gameMock,
+                Game.gameMock,
+                Game.gameMock
             ),
-            randomGame = Game(
-                id = 582,
-                title = "Tarisland",
-                thumbnail = "https://www.freetogame.com/g/582/thumbnail.jpg",
-                shortDescription = "A cross-platform MMORPG developed by Level Infinite and Published by Tencent.",
-                gameUrl = "https://www.freetogame.com/open/tarisland",
-                genre = "MMORPG",
-                platform = "PC (Windows)",
-                publisher = "Tencent",
-                developer = "Level Infinite",
-                releaseDate = "2024-06-22",
-                freeToGameProfileUrl = "https://www.freetogame.com/tarisland"
-            ),
+            randomGame = Game.gameMock,
             favorites = setOf(1, 3),
             onFavoriteClick = { },
             navigatorClick = { },

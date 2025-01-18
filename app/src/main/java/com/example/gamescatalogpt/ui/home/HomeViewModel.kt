@@ -39,9 +39,9 @@ class HomeViewModel(
         favoritesViewModel.toggleFavorite(game, gameId)
     }
 
-    fun randomGame() {
+    fun randomGame(games: List<Game>) {
         viewModelScope.launch {
-            val currentGames = games.value
+            val currentGames = games
             if (currentGames.isNotEmpty()) {
                 _randomGame.value = currentGames.random()
             }

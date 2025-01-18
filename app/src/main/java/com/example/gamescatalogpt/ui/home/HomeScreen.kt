@@ -22,7 +22,9 @@ fun HomeScreen(
     val searchQuery by homeViewModel.searchQuery.collectAsState()
 
     LaunchedEffect(Unit) {
-        homeViewModel.randomGame()
+        if (games.isNotEmpty()) {
+            homeViewModel.randomGame(games)
+        }
     }
 
     HomeScreenContent(
@@ -30,7 +32,7 @@ fun HomeScreen(
         favorites = favorites,
         onFavoriteClick = homeViewModel::toggleFavorite,
         navigatorClick = { navigator.navigateToDetail(navController, it, false) },
-        onRandomClick = { homeViewModel.randomGame() },
+        onRandomClick = { homeViewModel.randomGame(games) },
         randomGame = randomGame,
         searchQuery = searchQuery,
         onSearchQueryGame = homeViewModel::updateSearchQuery,
